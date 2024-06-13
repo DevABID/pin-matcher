@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input class="form-control" id="randoms" type="text">
+                    <button class="generate-btn" onclick="gen()" id="generate">Generate Pin</button>
+                   
+                </div>
+            </div>
+     
+            <div name="calc"  class="col-md-6">
+                <div class="input-section half-width">
+                    <input class="form-control value" readonly type="text" name="txt" id="out">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div onclick="display('7')" class="button">7</div>
+                              <div onclick="display('8')"  class="button">8</div>
+                              <div onclick="display('9')"  class="button">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div onclick="display('4')"  class="button">4</div>
+                              <div onclick="display('5')"  class="button">5</div>
+                              <div onclick="display('6')"  class="button">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div onclick="display('1')"  class="button">1</div>
+                              <div onclick="display('2')"  class="button">2</div>
+                              <div onclick="display('3')" class="button">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div onclick="del()" class="button"> < </div>
+                                <div onclick="display('0')"  class="button">0</div>
+                                <div onclick="Clear()" class="button">C</div>
+                            </div>
+                            <div>
+                                <button type="submit" class="submit-btn" onclick="sub()">Submit</button>
+                                <!-- <p class="action-left">3 try left</p> -->
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="notify-section">
+            <p class="notify" id="cross">❌ Pin Didn't Match, Please try again</p>
+            <p class="notify" id="thik">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+
+    <script>
+        let outputscreen = document.getElementById("out");
+        // Backspace button
+        function del(){
+            outputscreen.value = outputscreen.value.slice(0,-1);
+        };   
+        // Backspace button
+        function Clear(){
+            outputscreen.value = "";
+        };  
+         
+        //Others Button
+        function display(num){
+            outputscreen.value += num;
+        }
+
+        const ran_num =  document.getElementById("randoms");
+        
+        // Random Number Genarator Button
+        function gen(){
+           
+                ran_num.value = parseInt(Math.random()*10000);
+                
+        }   
+            
+       
+        // Genarate code and Submit code Matcher 
+        function sub(){
+             
+           var l = outputscreen.value;
+           var r = ran_num.value;
+
+           if (l == r) {
+               
+                 document.getElementById("thik").style.display="block";
+                 document.getElementById("cross").style.display="none";
+                 
+            }else{
+                
+                document.getElementById("cross").style.display="block";
+                document.getElementById("thik").style.display="none";
+                
+            }
+
+
+
+
+
+
+
+
+        
+        }
+       
+      
+           
+        
+        
+    </script>
+</body>
+</html>
